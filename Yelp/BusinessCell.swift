@@ -1,4 +1,4 @@
-//
+ //
 //  BusinessCell.swift
 //  Yelp
 //
@@ -18,10 +18,13 @@ class BusinessCell: UITableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var categoriesLabel: UILabel!
     
+    
     var business: Business! {
         didSet {
             nameLabel.text = business.name
-            thumbImageView.setImageWithURL(business.imageURL!)
+            if business.imageURL != nil {
+                thumbImageView.setImageWithURL(business.imageURL!)
+            }
             ratingImageView.setImageWithURL(business.ratingImageURL!)
             distanceLabel.text = business.distance
             reviewsCountLabel.text = "\(business.reviewCount!) Reviews"
@@ -37,7 +40,7 @@ class BusinessCell: UITableViewCell {
         // Initialization code
         thumbImageView.layer.cornerRadius = 3
         thumbImageView.clipsToBounds = true
-        
+        thumbImageView.image = UIImage(named:"placeholder.png")
         nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
     

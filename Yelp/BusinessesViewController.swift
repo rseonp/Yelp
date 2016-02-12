@@ -66,7 +66,6 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BusinessCell", forIndexPath: indexPath) as! BusinessCell
-        
         cell.business = businesses[indexPath.row]
         
         return cell
@@ -83,16 +82,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             // item should NOT be included
             
             Business.searchWithTerm("Thai \(searchText)", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-                self.businesses = businesses
-                self.tableView.reloadData()
-                for business in businesses {
-                    print(business.name!)
-                    print(business.address!)
-                }
+                    self.businesses = businesses
+                    self.tableView.reloadData()
             })
             
         }
-        tableView.reloadData()
     }
 
     
